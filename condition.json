@@ -1,0 +1,12 @@
+// $in, $nin, implicit and condition
+
+
+// $in = in
+
+db.User_Info.findOne({gender: {$in: ["Male", "Female"]}})
+
+
+
+// $nin = not in
+
+db.User_Info.findOne({gender: {$nin: ["Male", "Female"]}})
