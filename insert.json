@@ -28,3 +28,21 @@ db.User_Info.insertMany([
 
 
 
+// Find one
+// find a single document
+db.User_Info.findOne({company : "Skyvu"})
+
+
+// find all
+db.User_Info.find(({gender : "Female"})
+
+
+// feild filtering
+
+
+db.User_Info.find({gender : "Female"}, {
+    name: 1,
+    gender: 1,
+    email : 1
+})
+
