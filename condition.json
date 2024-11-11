@@ -10,3 +10,64 @@ db.User_Info.findOne({gender: {$in: ["Male", "Female"]}})
 // $nin = not in
 
 db.User_Info.findOne({gender: {$nin: ["Male", "Female"]}})
+
+
+
+
+
+
+
+
+// less then greater then
+// implicit and
+
+db.User_Info.find({
+    gender: "Female",
+    age: { $gt: 18, $lt: 30 }
+},
+    { age: 1, gender: 1 }
+).sort({ age: 1 })
+
+
+
+
+
+db.User_Info.find({
+    gender: "Female", age: { $in: [18, 20] }
+},
+    { age: 1, gender: 1 }
+).sort({ age: 1 })
+
+
+
+
+
+db.User_Info.find({
+    gender: "Female", age: { $in: [18, 20, 24, 30] }
+},
+    { age: 1, gender: 1 }
+).sort({ age: 1 })
+
+
+
+
+
+db.User_Info.find({
+    gender: "Female", age: { $in: [18, 20, 24, 30] },
+    interests: "Cooking",
+},
+
+    { age: 1, gender: 1, interests: 1 }
+).sort({ age: 1 })
+
+
+
+
+
+db.User_Info.find({
+    gender: "Female", age: { $in: [18, 20, 24, 30] },
+    interests: {$in: ["Cooking", "Gane"]},
+},
+
+    { age: 1, gender: 1, interests: 1 }
+).sort({ age: 1 })
