@@ -1,0 +1,30 @@
+// ## Single data insert
+
+
+
+db.User_Info.insertOne({
+    userName: "test_rabbi",
+    password: 123,
+    Phone: "0"
+})
+
+
+
+
+// ## insert many
+
+db.User_Info.insertMany([
+    {
+        userName: "test_rabbi",
+        password: 123,
+        Phone: "0"
+    },
+    {
+        userName: "test_rabbi",
+        password: 123,
+        Phone: "0"
+    }
+])
+
+
+
