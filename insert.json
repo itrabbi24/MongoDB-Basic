@@ -46,3 +46,15 @@ db.User_Info.find({gender : "Female"}, {
     email : 1
 })
 
+
+
+// another method
+db.User_Info.find({gender : "Male"}).project({
+    name : 1,
+    gender: 1
+})
+
+db.User_Info.findOne({gender : "Male"}, {
+    name : 1,
+    gender: 1
+})

@@ -1,0 +1,33 @@
+// // $eq, $neq, $gt, $lt, $gte, $lte
+
+
+
+// === $eq
+
+db.User_Info.findOne({gender: {$eq: "Male"} })
+
+
+// !== $ne
+s
+db.User_Info.findOne({gender: {$ne: "Male"} })
+
+
+// > $gt
+
+db.User_Info.findOne({age: {$gt: 20} })
+
+
+// < $lt
+
+db.User_Info.findOne({age: {$lt: 20} })
+
+
+// >= $gte,
+
+db.User_Info.findOne({age: {$gte: 20} })
+
+
+// <= $lte
+
+db.User_Info.findOne({age: {$lte: 20} })
+
