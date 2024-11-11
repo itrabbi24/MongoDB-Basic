@@ -71,3 +71,86 @@ db.User_Info.find({
 
     { age: 1, gender: 1, interests: 1 }
 ).sort({ age: 1 })
+
+
+
+
+
+
+
+// $and, $or, implicit vs explicit
+
+
+// explicit $and 
+
+db.User_Info.find({
+    $and: [
+        {age: { $ne: 15 }},
+        {age: {$ne: 30}}
+        
+        
+        ]
+})
+
+
+db.User_Info.find({
+    $and: [
+        { age: { $ne: 15 }},
+        { age: { $ne: 30 }}
+    ]
+}).project({
+    age: 1
+}).sort({ age: 1 });
+
+
+
+
+// explicit $or
+db.User_Info.find({
+    $or: [
+        {gender: "Female"},
+        { age: { $ne: 15 }},
+        { age: { $ne: 30 }}
+    ]
+}).project({
+    age: 1
+}).sort({ age: 1 });
+
+
+
+
+
+db.User_Info.find({
+    $or: [
+        { "skills.name": "JAVASCRIPT" },
+        { "skills.name": "PYTHON" }
+    ]
+}).project({
+    skills: 1
+}).sort({ age: 1 });
+
+
+
+
+// explicit $in
+
+db.User_Info.find({
+    "skills.name" : { $in: ["JAVASCRIPT", "PYTHON"] }
+}).project({
+    skills: 1
+}).sort({ age: 1 });
+
+
+
+
+
+
+
+//  $exists, $type,$size
+
+
+// $exists
+db.User_Info.find({ age: {$exists: false} })
+
+// $type
+db.User_Info.find({ age: {$type: "string"} })
