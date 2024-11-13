@@ -154,3 +154,213 @@ db.User_Info.find({ age: {$exists: false} })
 
 // $type
 db.User_Info.find({ age: {$type: "string"} })
+
+
+
+
+// type
+db.User_Info.find( {age: {$type: "string"} } )
+
+
+// $size
+db.User_Info.find( {friends: {$size: 4} } )
+.project({friends: 1})
+
+
+
+
+
+
+
+// $all , $elemMatch
+
+
+db.User_Info.find({
+    "interests.2": "Cooking"
+}).project({interests : 1})
+
+
+
+
+
+
+// $all
+db.User_Info.find({
+    $all: [
+        { "skills.name": "JAVASCRIPT" },
+        { "skills.name": "PYTHON" }
+    ]
+}).project({
+    skills: 1
+}).sort({ age: 1 });
+
+
+// $all
+db.User_Info.find({
+    interests: { $all: [ "Gardening", "Gaming", "Cooking" ]}
+}).project({interests : 1})
+
+
+
+
+
+// $elemMatch   
+db.User_Info.find({
+    "skills": {
+        $elemMatch: {
+            "name": "JAVASCRIPT",
+            "level": "Intermediate"
+        }
+    }
+}).project({
+    skills: 1
+}).sort({ age: 1 });
+
+
+db.User_Info.find({
+    skills: { $elemMatch: {
+        name: "JAVASCRIPT",
+        level: "Intermidiate"
+    } }
+ }).project({skills : 1})
+ 
+
+ 
+
+
+//  $set, $addToSet, $push
+
+
+
+// $set
+db.User_Info.updateOne(
+    { userName: "test_rabbi" },
+    {
+        $set: {
+            userName: "test_rabbi",
+            password: 123,
+            Phone: "0"
+        }
+    }
+)
+
+db.User_Info.find({_id: ObjectId("6406ad63fc13ae5a40000065") })
+
+db.User_Info.updateOne({_id: ObjectId("6406ad63fc13ae5a40000065")},{$set:{
+    email: "test@gmail.com"
+}})
+
+
+
+// $addToSet
+db.User_Info.updateOne(
+    { userName: "test_rabbi" },
+    {
+        $addToSet: {
+            userName: "test_rabbi",
+            password: 123,
+            Phone: "0"
+        }
+    }
+)
+
+db.User_Info.updateOne({ _id: ObjectId("6406ad63fc13ae5a40000065") },
+    {
+        $addToSet: {
+            interests: { $each: ["Cooking", "Driving"]}
+        }
+    })
+
+
+// $push
+db.User_Info.updateOne(
+    { userName: "test_rabbi" },
+    {
+        $push: {
+            userName: "test_rabbi",
+            password: 123,
+            Phone: "0"
+        }
+    }
+)
+
+
+
+
+// $unset, $pop, $pull, $pullAll
+
+
+
+// $unset
+db.User_Info.updateOne(
+    { userName: "test_rabbi" },
+    {
+        $unset: {
+            userName: "test_rabbi",
+            password: 123,
+            Phone: "0"
+        }
+    }
+)
+
+
+db.User_Info.updateOne({ _id: ObjectId("6406ad63fc13ae5a40000065") },{
+    $unset: { birthday : "" }})
+
+
+
+
+// $pop
+db.User_Info.updateOne(
+    { userName: "test_rabbi" },
+    {
+        $pop: {
+            userName: "test_rabbi",
+            password: 123,
+            Phone: "0"
+        }
+    }
+)
+
+db.User_Info.updateOne({ _id: ObjectId("6406ad63fc13ae5a40000065") }, {
+    $pop: {friends: 1}
+})
+
+db.User_Info.updateOne({ _id: ObjectId("6406ad63fc13ae5a40000065") }, {
+    $pop: {friends: -1}
+})
+
+
+
+// $pull
+db.User_Info.updateOne(
+    { userName: "test_rabbi" },
+    {
+        $pull: {
+            userName: "test_rabbi",
+            password: 123,
+            Phone: "0"
+        }
+    }
+)
+
+db.User_Info.updateOne({ _id: ObjectId("6406ad63fc13ae5a40000065") }, {
+    $pull: {friends: "Najmus Sakib"}
+})
+
+
+
+
+// $pullAll
+db.User_Info.updateOne(
+    { userName: "test_rabbi" },
+    {
+        $pullAll: {
+            userName: "test_rabbi",
+            password: 123,
+            Phone: "0"
+        }
+    }
+)
+
+
