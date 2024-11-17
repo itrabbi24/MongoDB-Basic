@@ -364,3 +364,23 @@ db.User_Info.updateOne(
 )
 
 
+
+
+// $match , $project aggregation stage
+
+
+db.User_Info.aggregate([
+    {
+        $match: {
+            "skills.name": "JAVASCRIPT"
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            skills: 1
+        }
+    }
+])
+
+
