@@ -636,3 +636,34 @@ db.User_Info.aggregate([
 ])
 
 
+
+
+
+
+// $facet, multiple pipeline aggregation stage
+
+
+// $facet
+db.User_Info.aggregate([
+    {
+        $facet: {
+            Male: [
+                {
+                    $match: {
+                        gender: "Male"
+                    }
+                }
+            ],
+            Female: [
+                {
+                    $match: {
+                        gender: "Female"
+                    }
+                }
+            ]
+        }
+    }
+
+
+
+
