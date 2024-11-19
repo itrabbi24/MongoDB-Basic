@@ -431,3 +431,64 @@ db.User_Info.aggregate([
     }
 ])
   
+
+
+
+
+// $group , $sum , $push aggregation stage
+
+
+// $group
+db.User_Info.aggregate([
+    {
+        $group: {
+            _id: "$gender",
+            count: { $sum: 1 }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            gender: "$_id",
+            count: 1
+        }
+    }
+])
+
+
+// $sum
+db.User_Info.aggregate([
+    {
+        $group: {
+            _id: "$gender",
+            count: { $sum: "$age" }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            gender: "$_id",
+            count: 1
+        }
+    }
+])
+
+
+// $push
+db.User_Info.aggregate([
+    {
+        $group: {
+            _id: "$gender",
+            friends: { $push: "$friends" }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            gender: "$_id",
+            friends: 1
+        }
+    }
+])
+
+
