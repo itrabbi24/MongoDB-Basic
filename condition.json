@@ -667,3 +667,19 @@ db.User_Info.aggregate([
 
 
 
+
+
+
+    // compound index and text index
+
+    // compound index
+    // https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/
+    
+
+
+    // text index
+    // https://www.mongodb.com/docs/v6.1/core/index-text/
+
+
+    // index visual
+    // https://www.cs.usfca.edu/~galles/visualization/BTree.html
